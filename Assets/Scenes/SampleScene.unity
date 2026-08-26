@@ -715,6 +715,14 @@ PrefabInstance:
       propertyPath: chordText
       value: 
       objectReference: {fileID: 1916250203}
+    - target: {fileID: 528728143075446400, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 528728143075446400, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 2017284471225553034, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
       propertyPath: m_Name
       value: Acoustic Guitar
@@ -758,6 +766,46 @@ PrefabInstance:
     - target: {fileID: 3300979368232881211, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378921585114169112, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378921585114169112, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005149150153094700, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005149150153094700, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925878543616051234, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925878543616051234, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8060968223697889329, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8060968223697889329, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392139397863282504, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392139397863282504, guid: 74fc3d9315b1b4ff7a2c30a6d49d2f55, type: 3}
+      propertyPath: triggerTimeRandomness
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

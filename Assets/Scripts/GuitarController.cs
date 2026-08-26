@@ -98,7 +98,7 @@ public class GuitarController : MonoBehaviour
             visualizer.width = stringWidth;
 
             strings[i].GetComponent<LineRenderer>().material.color = Color.white;
-            strings[i].GetComponent<StringSynth>().frequency = frequencies[i];
+            strings[i].GetComponent<StringSynth>().Frequency = frequencies[i];
         }
     }
 
@@ -193,7 +193,7 @@ public class GuitarController : MonoBehaviour
             }
 
             int note = chord.Notes[i];
-            strings[i].GetComponent<StringSynth>().frequency = frequencies[i] * Mathf.Pow(2f, note / 12f);
+            strings[i].GetComponent<StringSynth>().Frequency = frequencies[i] * Mathf.Pow(2f, note / 12f);
             strings[i].GetComponent<StringSynth>().isMuted = chord.pressPositions[i] == -1;
         }
     }

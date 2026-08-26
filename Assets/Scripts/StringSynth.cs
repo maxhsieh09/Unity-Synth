@@ -6,8 +6,17 @@ public class StringSynth : MonoBehaviour
 {
     [Range(0, 1)]
     public float volume = 0.2f;
-    [Range(60, 1000)]
-    public float frequency = 330f;
+    
+    private float _frequency = 330f;
+    public float Frequency
+    {
+        get => _frequency;
+        set
+        {
+            _frequency = value;
+            UpdateHarmonicFrequencies();
+        }
+    }
 
     public int numHarmonics = 60;
     public float inharmonicity = 0.005f;
@@ -15,7 +24,7 @@ public class StringSynth : MonoBehaviour
     public float lowPassFactor = 0.01f;
     public float pitchShift = 0.005f; // Currently unused
     public float pitchShiftDecay = 18f;
-    public float MuteDamping = 200f;
+    public float muteDamping = 200f;
     public float triggerTimeRandomness = 0.005f;
     public float triggerDelay = 0.02f;
     public float pluckPosition = 0.3f;
@@ -41,6 +50,11 @@ public class StringSynth : MonoBehaviour
         sinStep = new float[numHarmonics];
         cosStep = new float[numHarmonics];
         //phases = new float[numHarmonics];
+
+        for (int i = 0; i < numHarmonics; i++)
+        {
+            cosP[i] = 1f;
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +68,20 @@ public class StringSynth : MonoBehaviour
         triggerTime = AudioSettings.dspTime + Random.Range(0, triggerTimeRandomness);
     }
 
+    void UpdateHarmonicFrequencies()
+    {
+        if (harmonicFreqs == null) return;
+
+        for (int i = 0; i < numHarmonics; i++)
+        {
+            float currentFreq = Frequency * (i + 1) * (1 + inharmonicity);
+            float increment = currentFreq * Mathf.PI * 2 / sampleRate;
+            harmonicFreqs[i] = currentFreq;
+            sinStep[i] = Mathf.Sin(increment);
+            cosStep[i] = Mathf.Cos(increment);
+        }
+    }
+
     public void ResetState()
     {
         pitchFactor = pitchShift;
@@ -61,43 +89,51 @@ public class StringSynth : MonoBehaviour
         float m = 1f / Mathf.Clamp(pluckPosition, 0.02f, 0.98f);
         for (int i = 0; i < numHarmonics; i++)
         {
-            float currentFreq = frequency * (i + 1);
+            float currentFreq = Frequency * (i + 1);
             float increment = currentFreq * Mathf.PI * 2 / sampleRate;
             harmonicFreqs[i] = currentFreq;
-            sinP[i] = 0;
-            cosP[i] = 1;
+            //sinP[i] = 0;
+            //cosP[i] = 1;
             sinStep[i] = Mathf.Sin(increment);
             cosStep[i] = Mathf.Cos(increment);
 
+            // Normalize phasor
+            float magnitude = Mathf.Sqrt(sinP[i] * sinP[i] + cosP[i] * cosP[i]);
+            sinP[i] /= magnitude;
+            cosP[i] /= magnitude;
+
             // Calculate Fourier series coefficients of a triangle wave
-            coefficients[i] = -(2f * Mathf.Pow(-1f, i + 1) * Mathf.Pow(m, 2f))
+            float currentCoef = -(2f * Mathf.Pow(-1f, i + 1) * Mathf.Pow(m, 2f))
                 / (Mathf.Pow(i + 1, 2f) * (m - 1) * (Mathf.PI * 2));
-            coefficients[i] *= Mathf.Sin((i + 1) * (m - 1) * Mathf.PI / m);
-            coefficients[i] *= Mathf.Exp(-Mathf.Pow(currentFreq / lowPassFactor, 2f)); // Gaussian low-pass filter
+            currentCoef *= Mathf.Sin((i + 1) * (m - 1) * Mathf.PI / m);
+            currentCoef *= Mathf.Exp(-Mathf.Pow(currentFreq / lowPassFactor, 2f)); // Gaussian low-pass filter
             // Sound amplitude is proportional to the harmonic number squared (acceleration)
-            coefficients[i] *= Mathf.Pow(i + 1, 2f) / 10f;
-            coefficients[i] *= Mathf.Sin(pluckPosition * Mathf.PI); // Louder when plucked at the center
+            currentCoef *= Mathf.Pow(i + 1, 2f) / 10f;
+            currentCoef *= Mathf.Sin(pluckPosition * Mathf.PI); // Louder when plucked at the center
+
+            // Incoherent superposition
+            coefficients[i] = Mathf.Sqrt(coefficients[i] * coefficients[i] * 0.9f + currentCoef * currentCoef);
         }
     }
 
     void OnAudioFilterRead(float[] data, int channels)
     {
         double currentTime = AudioSettings.dspTime;
-        float actualDamping = isMuted ? MuteDamping : damping;
+        float actualDamping = isMuted ? muteDamping : damping;
         
         for (int i = 0; i < data.Length; i += channels)
         {
             if (currentTime > triggerTime)
             {
                 if (currentTime - triggerTime < triggerDelay)
-                {
-                    actualDamping = MuteDamping;
-                }
+                { 
+                    actualDamping = muteDamping;
+                } 
                 else
                 {
                     ResetState();
                     triggerTime = double.PositiveInfinity;
-                    actualDamping = isMuted ? MuteDamping : damping;
+                    actualDamping = isMuted ? muteDamping : damping;
                 }
             }
 

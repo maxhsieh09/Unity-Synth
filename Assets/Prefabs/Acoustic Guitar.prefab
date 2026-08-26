@@ -48,16 +48,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0.5
-  frequency: 147
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
   lowPassFactor: 2000
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &1643747249606638537
@@ -321,17 +320,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.55
-  frequency: 82
+  volume: 0.7
   numHarmonics: 50
   inharmonicity: 0.008
   damping: 0.002
   lowPassFactor: 1000
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &7045916562460396910
@@ -596,16 +594,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0.45
-  frequency: 196
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
   lowPassFactor: 2600
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &6931127016410004909
@@ -869,17 +866,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.5
-  frequency: 110
+  volume: 0.6
   numHarmonics: 50
   inharmonicity: 0.007
   damping: 0.002
   lowPassFactor: 1430
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &5016813932664303672
@@ -1229,16 +1225,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0.35
-  frequency: 330
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
   lowPassFactor: 5100
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &1398024048917241290
@@ -1503,16 +1498,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0.4
-  frequency: 247
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
   lowPassFactor: 3200
   pitchShift: 0.005
   pitchShiftDecay: 50
-  MuteDamping: 0.5
+  muteDamping: 200
   triggerTimeRandomness: 0.005
-  triggerDelay: 0.02
+  triggerDelay: 0
   pluckPosition: 0.28
   isMuted: 0
 --- !u!82 &7326583004218291671
