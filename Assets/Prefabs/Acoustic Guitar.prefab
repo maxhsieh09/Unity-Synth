@@ -273,6 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 17
+  stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &167828320554418988
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +633,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 15
+  stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1571283747400818645
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +909,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 18
+  stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1672807187860289975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 16
+  stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2017284471225553034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1633,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 20
+  stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4554020715523562959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,3 +1993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
+  vibrationAmount: 0.5
+  vibrationFrequency: 19
+  stopPosition: {x: 0, y: 0, z: 0}
