@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.42
+  volume: 0.7
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
-  lowPassFactor: 2000
+  lowPassFactor: 1200
   pitchShift: 0.005
   pitchShiftDecay: 50
   muteDamping: 200
@@ -677,11 +677,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.38
+  volume: 0.5
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
-  lowPassFactor: 2600
+  lowPassFactor: 2000
   pitchShift: 0.005
   pitchShiftDecay: 50
   muteDamping: 200
@@ -950,11 +950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.5
+  volume: 0.7
   numHarmonics: 50
   inharmonicity: 0.007
   damping: 0.002
-  lowPassFactor: 1430
+  lowPassFactor: 1000
   pitchShift: 0.005
   pitchShiftDecay: 50
   muteDamping: 200
