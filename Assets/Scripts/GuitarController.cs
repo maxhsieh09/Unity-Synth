@@ -243,8 +243,10 @@ public class GuitarController : MonoBehaviour
         {
             if (i >= 0 && i < strings.Length)
             {
-                float relativeLength = Mathf.Pow(2f, -chords[currentChordIndex].Notes[i] / 12f);
-                strings[i].GetComponent<StringSynth>().pluckPosition = relativeMouseX / relativeLength;
+                float relativeStringLength = Mathf.Pow(2f, -chords[currentChordIndex].Notes[i] / 12f);
+                float pluckPosition = relativeMouseX / relativeStringLength;
+                if (pluckPosition < 0 || pluckPosition > 1) continue;
+                strings[i].GetComponent<StringSynth>().pluckPosition = pluckPosition;
 
                 //float volume = mouseSpeed * speedVolumeFactor * maxVolumes[i];
                 //volume = Mathf.Clamp(volume, minVolume, maxVolumes[i]) * Random.Range(0.9f, 1.1f);
