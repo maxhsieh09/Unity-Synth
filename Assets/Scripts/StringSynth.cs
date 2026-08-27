@@ -31,7 +31,11 @@ public class StringSynth : MonoBehaviour
     public bool isMuted = false;
 
     int sampleRate;
-    float[] coefficients;
+    public float[] Coefficients
+    {
+        get;
+        private set;
+    }
     //float[] phases;
     float[] harmonicFreqs;
     float[] sinP, cosP, sinStep, cosStep;
@@ -43,7 +47,7 @@ public class StringSynth : MonoBehaviour
     {
         sampleRate = AudioSettings.outputSampleRate;
 
-        coefficients = new float[numHarmonics];
+        Coefficients = new float[numHarmonics];
         harmonicFreqs = new float[numHarmonics];
         sinP = new float[numHarmonics];
         cosP = new float[numHarmonics];
@@ -104,7 +108,7 @@ public class StringSynth : MonoBehaviour
             currentCoef *= Mathf.Sin(pluckPosition * Mathf.PI); // Louder when plucked at the center
 
             // Incoherent superposition
-            coefficients[i] = Mathf.Sqrt(coefficients[i] * coefficients[i] * 0.9f + currentCoef * currentCoef);
+            Coefficients[i] = Mathf.Sqrt(Coefficients[i] * Coefficients[i] * 0.9f + currentCoef * currentCoef);
         }
     }
 
@@ -132,7 +136,7 @@ public class StringSynth : MonoBehaviour
             float value = 0f;
             for (int j = 0; j < numHarmonics; j++)
             {
-                value += coefficients[j] * sinP[j];
+                value += Coefficients[j] * sinP[j];
                 //float harmonicFreqs = frequency * (1 + j * (1f + inharmonicity)) * (1 + pitchFactor);
                 //phases[j] += harmonicFreqs * Mathf.PI * 2 / sampleRate;
                 //phases[j] %= Mathf.PI * 2;
@@ -142,7 +146,7 @@ public class StringSynth : MonoBehaviour
                 cosP[j] = newCos;
 
                 // Damping
-                coefficients[j] *= Mathf.Max(1 - actualDamping * harmonicFreqs[j] / sampleRate, 0);
+                Coefficients[j] *= Mathf.Max(1 - actualDamping * harmonicFreqs[j] / sampleRate, 0);
             }
             
             for (int c = 0; c < channels; c++)

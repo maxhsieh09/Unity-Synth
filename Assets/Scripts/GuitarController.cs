@@ -64,6 +64,8 @@ public class GuitarController : MonoBehaviour
     int prevStringIndex = 0;
     float prevMouseY = 0;
 
+    public Chord CurrentChord => chords[currentChordIndex];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,13 +119,12 @@ public class GuitarController : MonoBehaviour
         }
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Chord chord = chords[currentChordIndex];
 
         for (int i = 0; i < strings.Length; i++)
         {
             if (Input.GetKeyDown(pluckKeys[i]))
             {
-                float relativeLength = Mathf.Pow(2f, -chord.Notes[i] / 12f);
+                float relativeLength = Mathf.Pow(2f, -CurrentChord.Notes[i] / 12f);
                 strings[i].GetComponent<StringSynth>().pluckPosition = pluckPosition / relativeLength;
                 //strings[i].GetComponent<StringSynth>().volume = maxVolumes[i];
                 strings[i].GetComponent<StringSynth>().Trigger();
@@ -140,12 +141,12 @@ public class GuitarController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            chord.barPosition = Mathf.Clamp(chord.barPosition - 1, 0, numFrets - 1);
+            CurrentChord.barPosition = Mathf.Clamp(CurrentChord.barPosition - 1, 0, numFrets - 1);
             UpdateChord();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            chord.barPosition = Mathf.Clamp(chord.barPosition + 1, 0, numFrets - 1);
+            CurrentChord.barPosition = Mathf.Clamp(CurrentChord.barPosition + 1, 0, numFrets - 1);
             UpdateChord();
         }
         if (Input.GetKeyDown(KeyCode.M))
@@ -153,13 +154,13 @@ public class GuitarController : MonoBehaviour
             int stringIndex = MouseToStringIndex(mousePosition, false);
             if (stringIndex >= 0 && stringIndex < strings.Length)
             {
-                if (chord.pressPositions[stringIndex] == -1)
+                if (CurrentChord.pressPositions[stringIndex] == -1)
                 {
-                    chord.pressPositions[stringIndex] = 0;
+                    CurrentChord.pressPositions[stringIndex] = 0;
                 }
                 else
                 {
-                    chord.pressPositions[stringIndex] = -1;
+                    CurrentChord.pressPositions[stringIndex] = -1;
                 }
                 UpdateChord();
             }
@@ -168,33 +169,31 @@ public class GuitarController : MonoBehaviour
 
     void UpdateChord()
     {
-        Chord chord = chords[currentChordIndex];
-
         foreach (var mark in chordMarks)
         {
             Destroy(mark);
         }
         chordMarks.Clear();
         
-        Vector3 position = new Vector3(NotePosition(chord.barPosition - 0.45f), 0, 0);
+        Vector3 position = new Vector3(NotePosition(CurrentChord.barPosition - 0.45f), 0, 0);
         chordMarks.Add(Instantiate(barMarkPrefab, position, Quaternion.identity, transform));
 
         for (int i = 0; i < strings.Length; i++)
         {
-            if (chord.pressPositions[i] > 0)
+            if (CurrentChord.pressPositions[i] > 0)
             {
-                position = new Vector3(NotePosition(chord.pressPositions[i] - 0.45f), StringY(i), 0);
+                position = new Vector3(NotePosition(CurrentChord.pressPositions[i] - 0.45f), StringY(i), 0);
                 chordMarks.Add(Instantiate(fingerMarkPrefab, position, Quaternion.identity, transform));
             }
-            if (chord.pressPositions[i] == -1)
+            if (CurrentChord.pressPositions[i] == -1)
             {
                 position = new Vector3(NotePosition(0), StringY(i), 0);
                 chordMarks.Add(Instantiate(muteMarkPrefab, position, Quaternion.identity, transform));
             }
 
-            int note = chord.Notes[i];
+            int note = CurrentChord.Notes[i];
             strings[i].GetComponent<StringSynth>().Frequency = frequencies[i] * Mathf.Pow(2f, note / 12f);
-            strings[i].GetComponent<StringSynth>().isMuted = chord.pressPositions[i] == -1;
+            strings[i].GetComponent<StringSynth>().isMuted = CurrentChord.pressPositions[i] == -1;
         }
     }
 
@@ -216,14 +215,13 @@ public class GuitarController : MonoBehaviour
             int stringIndex = MouseToStringIndex(mousePosition, false);
             int fretIndex = (int)(-Mathf.Log(0.5f - mousePosition.x / stringLength, 2) * 12) + 1;
 
-            Chord chord = chords[currentChordIndex];
-            if (chord.pressPositions[stringIndex] == fretIndex)
+            if (CurrentChord.pressPositions[stringIndex] == fretIndex)
             {
-                chord.pressPositions[stringIndex] = 0;
+                CurrentChord.pressPositions[stringIndex] = 0;
             }
             else
             {
-                chord.pressPositions[stringIndex] = fretIndex;
+                CurrentChord.pressPositions[stringIndex] = fretIndex;
             }
             UpdateChord();
         }
@@ -243,7 +241,7 @@ public class GuitarController : MonoBehaviour
         {
             if (i >= 0 && i < strings.Length)
             {
-                float relativeStringLength = Mathf.Pow(2f, -chords[currentChordIndex].Notes[i] / 12f);
+                float relativeStringLength = Mathf.Pow(2f, -CurrentChord.Notes[i] / 12f);
                 float pluckPosition = relativeMouseX / relativeStringLength;
                 if (pluckPosition < 0 || pluckPosition > 1) continue;
                 strings[i].GetComponent<StringSynth>().pluckPosition = pluckPosition;
