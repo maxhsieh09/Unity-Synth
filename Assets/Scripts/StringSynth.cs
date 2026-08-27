@@ -82,21 +82,13 @@ public class StringSynth : MonoBehaviour
         }
     }
 
-    public void ResetState()
+    void AdditivePluck()
     {
         pitchFactor = pitchShift;
 
         float m = 1f / Mathf.Clamp(pluckPosition, 0.02f, 0.98f);
         for (int i = 0; i < numHarmonics; i++)
         {
-            float currentFreq = Frequency * (i + 1);
-            float increment = currentFreq * Mathf.PI * 2 / sampleRate;
-            harmonicFreqs[i] = currentFreq;
-            //sinP[i] = 0;
-            //cosP[i] = 1;
-            sinStep[i] = Mathf.Sin(increment);
-            cosStep[i] = Mathf.Cos(increment);
-
             // Normalize phasor
             float magnitude = Mathf.Sqrt(sinP[i] * sinP[i] + cosP[i] * cosP[i]);
             sinP[i] /= magnitude;
@@ -106,7 +98,7 @@ public class StringSynth : MonoBehaviour
             float currentCoef = -(2f * Mathf.Pow(-1f, i + 1) * Mathf.Pow(m, 2f))
                 / (Mathf.Pow(i + 1, 2f) * (m - 1) * (Mathf.PI * 2));
             currentCoef *= Mathf.Sin((i + 1) * (m - 1) * Mathf.PI / m);
-            currentCoef *= Mathf.Exp(-Mathf.Pow(currentFreq / lowPassFactor, 2f)); // Gaussian low-pass filter
+            currentCoef *= Mathf.Exp(-Mathf.Pow(harmonicFreqs[i] / lowPassFactor, 2f)); // Gaussian low-pass filter
             // Sound amplitude is proportional to the harmonic number squared (acceleration)
             currentCoef *= Mathf.Pow(i + 1, 2f) / 10f;
             currentCoef *= Mathf.Sin(pluckPosition * Mathf.PI); // Louder when plucked at the center
@@ -131,7 +123,7 @@ public class StringSynth : MonoBehaviour
                 } 
                 else
                 {
-                    ResetState();
+                    AdditivePluck();
                     triggerTime = double.PositiveInfinity;
                     actualDamping = isMuted ? muteDamping : damping;
                 }
