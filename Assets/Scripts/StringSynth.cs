@@ -108,7 +108,7 @@ public class StringSynth : MonoBehaviour
             currentCoef *= Mathf.Sin(pluckPosition * Mathf.PI); // Louder when plucked at the center
 
             // Incoherent superposition
-            Coefficients[i] = Mathf.Sqrt(Coefficients[i] * Coefficients[i] * 0.9f + currentCoef * currentCoef);
+            Coefficients[i] = Mathf.Sqrt(Coefficients[i] * Coefficients[i] * 0.5f + currentCoef * currentCoef);
         }
     }
 
