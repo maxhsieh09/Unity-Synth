@@ -54,7 +54,7 @@ MonoBehaviour:
   lowPassFactor: 1200
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
@@ -414,7 +414,7 @@ MonoBehaviour:
   lowPassFactor: 1000
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
@@ -690,7 +690,7 @@ MonoBehaviour:
   lowPassFactor: 2000
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
@@ -966,7 +966,7 @@ MonoBehaviour:
   lowPassFactor: 1000
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   lowPassFactor: 5100
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   lowPassFactor: 3200
   pitchShift: 0.005
   pitchShiftDecay: 50
-  muteDamping: 200
+  muteDamping: 0.06
   triggerTimeRandomness: 0.02
   triggerDelay: 0
   pluckPosition: 0.28
