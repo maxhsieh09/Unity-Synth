@@ -195,11 +195,7 @@ public class GuitarController : MonoBehaviour
             strings[i].GetComponent<StringSynth>().Frequency = frequencies[i] * Mathf.Pow(2f, note / 12f);
             strings[i].GetComponent<StringSynth>().isMuted = CurrentChord.pressIndices[i] == -1;
 
-            position = new Vector3(NotePosition(CurrentChord.pressIndices[i]), StringY(i), 0);
-            if (CurrentChord.pressIndices[i] < 0)
-            {
-                position = new Vector3(0, StringY(i), 0); // NotePosition is undefined if note == -1
-            }
+            position = new Vector3(NotePosition(note), StringY(i), 0);
             strings[i].GetComponent<StringVisualizer>().stopPosition = position;
         }
     }
