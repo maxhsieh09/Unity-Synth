@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(StringSynth), typeof(LineRenderer))]
@@ -38,7 +39,7 @@ public class StringVisualizer : MonoBehaviour
         float peakY = 0f;
         if (!stringSynth.isMuted)
         {
-            peakY = Mathf.Sin(time * vibrationFrequency * 2 * Mathf.PI) * stringSynth.Coefficients[0] * vibrationAmount;
+            peakY = Mathf.Sin(time * vibrationFrequency * 2 * Mathf.PI) * stringSynth.Coefficients.Sum() * vibrationAmount;
         }
         Vector3 rightPoint = transform.position + transform.right * length / 2;
 

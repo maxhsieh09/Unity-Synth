@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 17
   stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &167828320554418988
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 15
   stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1571283747400818645
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 18
   stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1672807187860289975
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 16
   stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2017284471225553034
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33168e88263447dd9aa99d42b9bc146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.29
+  volume: 0.26
   numHarmonics: 50
   inharmonicity: 0.005
   damping: 0.0015
@@ -1633,7 +1633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 20
   stopPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4554020715523562959
@@ -1993,6 +1993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 10
   width: 0.05
-  vibrationAmount: 0.5
+  vibrationAmount: 0.12
   vibrationFrequency: 19
   stopPosition: {x: 0, y: 0, z: 0}
