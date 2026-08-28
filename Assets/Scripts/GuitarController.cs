@@ -112,7 +112,7 @@ public class GuitarController : MonoBehaviour
             if (Input.GetKeyDown((KeyCode)(i + 49)))
             {
                 currentChordIndex = i;
-                chordText.text = "Current chord: " + (i + 1).ToString();
+                chordText.text = "Current Chord: " + (i + 1).ToString();
                 UpdateChord();
                 break;
             }
