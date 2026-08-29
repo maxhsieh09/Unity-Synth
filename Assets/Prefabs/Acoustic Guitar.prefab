@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.7
   numHarmonics: 50
-  inharmonicity: 0.005
+  inharmonicity: 0.0002
   damping: 0.0015
   lowPassFactor: 1200
   pitchShift: 0.005
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.6
   numHarmonics: 50
-  inharmonicity: 0.008
+  inharmonicity: 0.0002
   damping: 0.002
   lowPassFactor: 1000
   pitchShift: 0.005
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.5
   numHarmonics: 50
-  inharmonicity: 0.005
+  inharmonicity: 0.0002
   damping: 0.0015
   lowPassFactor: 2000
   pitchShift: 0.005
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.7
   numHarmonics: 50
-  inharmonicity: 0.007
+  inharmonicity: 0.0002
   damping: 0.002
   lowPassFactor: 1000
   pitchShift: 0.005
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.26
   numHarmonics: 50
-  inharmonicity: 0.005
+  inharmonicity: 0.0002
   damping: 0.0015
   lowPassFactor: 5100
   pitchShift: 0.005
@@ -1769,7 +1769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0.34
   numHarmonics: 50
-  inharmonicity: 0.005
+  inharmonicity: 0.0002
   damping: 0.0015
   lowPassFactor: 3200
   pitchShift: 0.005

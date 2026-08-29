@@ -78,7 +78,7 @@ public class StringSynth : MonoBehaviour
 
         for (int i = 0; i < numHarmonics; i++)
         {
-            float currentFreq = Frequency * (i + 1) * (1 + inharmonicity);
+            float currentFreq = Frequency * (i + 1) * Mathf.Sqrt(1f + i * i * inharmonicity);
             float increment = currentFreq * Mathf.PI * 2 / sampleRate;
             harmonicFreqs[i] = currentFreq;
             sinStep[i] = Mathf.Sin(increment);
