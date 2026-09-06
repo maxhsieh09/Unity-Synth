@@ -6,16 +6,19 @@ public class FluteSynth : MonoBehaviour
 {
     [Range(200f, 2000f)]
     public float frequency = 440f;
-    [Range(0f, 0.5f)]
+    [Range(0f, 1f)]
     public float pressureAmount = 0.1f;
-    [Range(0f, 5f)]
+    [Range(0f, 1f)]
     public float noiseAmount = 0.2f;
 
-    public float inputDelayMs = 0.1f;
+    public float inputDelayFraction = 0.1f;
     [Range(0f, 1f)]
     public float outputGain = 0.5f;
+    public float reflectionGain = 0.8f;
     public float jetFeedbackGain = 0.5f;
     public int dampingOrder = 4;
+    [Range(0f, 1f)]
+    public float jetBias = 0.1f;
 
     [SerializeField]
     bool isPlaying = false;
@@ -25,6 +28,7 @@ public class FluteSynth : MonoBehaviour
     DelayLine boreDelayLine;
     DelayLine inputDelayLine;
     AdjustableDampingFilter dampingFilter;
+    SpringMassResonator DCBlcoker = new(60f, 0.7f, SpringMassResonator.FilterType.HighPass);
     System.Random random = new();
     PinkNoiseGenerator noiseGenerator = new(true, 80f);
 
@@ -38,7 +42,7 @@ public class FluteSynth : MonoBehaviour
         };
         inputDelayLine = new DelayLine
         {
-            length = (int)(sampleRate * inputDelayMs / 1000)
+            length = (int)(sampleRate / frequency * inputDelayFraction)
         };
         dampingFilter = new AdjustableDampingFilter(dampingOrder);
     }
@@ -49,6 +53,7 @@ public class FluteSynth : MonoBehaviour
         isPlaying = Input.GetKey(KeyCode.U);
 
         boreDelayLine.length = (int)(sampleRate / frequency);
+        inputDelayLine.length = (int)(sampleRate / frequency * inputDelayFraction);
     }
 
     void OnAudioFilterRead(float[] data, int channels)
@@ -58,21 +63,24 @@ public class FluteSynth : MonoBehaviour
             float input = 0f;
             if (isPlaying)
             {
-                //float unitNoise = (float)(random.NextDouble() * 2.0 - 1.0);
-                float unitNoise = noiseGenerator.Sample();
+                float unitNoise = (float)(random.NextDouble() * 2.0 - 1.0);
+                //float unitNoise = noiseGenerator.Sample();
                 input = pressureAmount + unitNoise * noiseAmount;
             }
 
-            input += boreFrontValue * jetFeedbackGain;
+            input += boreFrontValue * jetFeedbackGain + jetBias;
             input = inputDelayLine.Process(input);
 
-            float x = Mathf.Clamp(input, -1f, 1f);
-            input = x - x * x * x;
+            //float x = Mathf.Clamp(input, -1f, 1f); // Prevent it to go outside the stable region
+            //input = x - x * x * x;
+            input = System.MathF.Sin(input * 3f) * 0.4f;
 
-            float feedbackValue = dampingFilter.Process(boreFrontValue + input) * 0.999f;
+            float feedbackValue = dampingFilter.Process(boreFrontValue * reflectionGain + input);
+
+            float output = DCBlcoker.Process(feedbackValue);
             for (int c = 0; c < channels; c++)
             {
-                data[i + c] += Mathf.Clamp(feedbackValue * outputGain, -1f, 1f);
+                data[i + c] += Mathf.Clamp(output * outputGain, -1f, 1f);
             }
 
             boreFrontValue = boreDelayLine.Process(feedbackValue);

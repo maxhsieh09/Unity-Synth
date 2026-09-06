@@ -255,12 +255,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frequency: 440
-  pressureAmount: 0
-  noiseAmount: 0.2
-  inputDelayMs: 0.1
-  outputGain: 0.5
-  jetFeedbackGain: 0
-  dampingOrder: 8
+  pressureAmount: 0.5
+  noiseAmount: 0.04
+  inputDelayFraction: 0.5
+  outputGain: 0.155
+  reflectionGain: 0.5
+  jetFeedbackGain: 0.5
+  dampingOrder: 1
   isPlaying: 0
   boreFrontValue: 0
 --- !u!4 &1473301245
