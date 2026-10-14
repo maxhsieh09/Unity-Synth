@@ -16,7 +16,7 @@ It looks like a guitar and you can play it like a real guitar.
 
 The sound is not pre-recorded, it's generated on the fly in realtime, and the timbre changes continuously based on your plucking position.
 
-The vibration of strings and the sound can be decomposed into sine waves with integer multiple frequencies, which is called **harmonic series** or overtone series. The amplitude of each frequency can be determined by the plucking position. The algorithm adds up every sine wave to get the waveform of the final sound. This method is called additive synthesis.
+The vibration of strings and the sound can be decomposed into sine waves with integer multiple frequencies, which is called **harmonic series** or overtone series. The amplitude of each frequency can be determined by the plucking position. The algorithm adds up every sine wave to get the waveform of the final sound. This method is called [additive synthesis](https://en.wikipedia.org/wiki/Additive_synthesis).
 
 This project is inspired by this [amazing article](https://euphonics.org/5-3-synthesising-plucked-strings/), and the details of the method is described in it. I haven't implemented guitar body resonance yet, so the sound is not very realistic.
 
